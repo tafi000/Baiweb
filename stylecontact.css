@@ -1,0 +1,130 @@
+*,
+:before,
+:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Quicksand", sans-serif;
+  background-color: black;
+  /* background-image: url(https://raw.githubusercontent.com/CiurescuP/LogIn-Form/main/bg.jpg);
+  background-repeat: no-repeat; */
+}
+
+form {
+  height: auto; /* Chiều cao tự động */
+  max-height: 90vh; /* Chiều cao tối đa là 90% chiều cao màn hình */
+  width: 90%; /* Chiều rộng chiếm 90% màn hình */
+  max-width: 600px; /* Chiều rộng tối đa là 600px */
+  background-color: rgba(255, 255, 255, 0.13);
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+  border-radius: 17px;
+  backdrop-filter: blur(5px);
+  border: 5px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 40px rgba(129, 236, 174, 0.6);
+  padding: 20px;
+  overflow-y: auto; /* Thêm thanh cuộn nếu nội dung vượt quá chiều cao */
+}
+form * {
+  font-family: "Quicksand", sans-serif;
+  color: #ffffff;
+  letter-spacing: 1px;
+  outline: none;
+  border: none;
+}
+form h3 {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 50px;
+  text-align: center;
+}
+form h4 {
+  text-align: center;
+}
+
+label {
+  display: block;
+  margin-top: 20px;
+  font-size: 25px;
+  font-weight: 800;
+}
+select {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 11px 15px;
+  font-size: 14px;
+  font-weight: 300;
+  background: rgba(0, 0, 0, 0.22);
+  border: 2px solid #38363654;
+  border-radius: 17px;
+  width: 100%;
+  color: #ffffff;
+}
+
+select:hover {
+  background: #434343;
+  transition: all 0.5s ease;
+}
+
+select:focus {
+  box-shadow: 0px 2px 2px #0000002b, 0px 5px 10px #00000036;
+  background: #434343;
+}
+
+input {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding: 11px 15px 30px;
+  font-size: 14px;
+  font-weight: 300;
+  background: rgba(0, 0, 0, 0.22);
+  border: 2px solid #38363654;
+  border-radius: 17px;
+  width: 100%;
+}
+input:hover {
+  background: #434343;
+  transition: all 0.5s ease;
+}
+
+input:focus {
+  box-shadow: 0px 2px 2px #0000002b, 0px 5px 10px #00000036;
+  background: #434343;
+}
+
+::placeholder {
+  color: #e5e5e5;
+}
+#content {
+  padding: 3px 10px 70px;
+}
+button {
+  margin-top: 40px;
+  margin-bottom: 15px;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.22);
+  border: 2px solid #38363654;
+  border-radius: 5px;
+  color: #e1e1e1;
+  padding: 8px 15px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #629677;
+  transition: all 0.5s ease;
+}
+
+button:focus {
+  box-shadow: 0px 0px 0px 2px rgba(103, 110, 103, 0.71);
+  background: #629677;
+}
