@@ -26,10 +26,21 @@
 <body  style="height: 10000px">
     <?php include 'User/header.php';
      include('connect.php'); // Kết nối cơ sở dữ liệu
+     $limit = 8;
+     $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+     $start = ($page - 1) * $limit;
     
      // Lấy danh sách sản phẩm
-     $sql = "SELECT * FROM products LIMIT 30"; // Lấy 8 sản phẩm đầu tiên
+     $sql = "SELECT * FROM products LIMIT $start,$limit"; 
      $result = mysqli_query($conn, $sql);
+
+    $total_products_query = "SELECT COUNT(*) AS total FROM products";
+    $total_products_result = mysqli_query($conn, $total_products_query);
+    $total_products_row = mysqli_fetch_assoc($total_products_result);
+    $total_products = $total_products_row['total'];
+
+// Tính tổng số trang
+$total_pages = ceil($total_products / $limit);
      ?>
      
     <div class="banner">
@@ -62,10 +73,21 @@
             <?php endwhile; ?>
         </div>
     </div>
+    <div class="pagination">
+        <?php if($page > 1): ?>
+                <a href="?page=<?=$page - 1 ?>" class="btn"></a>
+                <?php endif; ?>
+                <?php for ($i = 1; $i <= $total_pages; $i++): ?>
+                <a href="?page=<?= $i ?>" class="btn <?= $i == $page ? 'active' : '' ?>"><?= $i ?></a>
+                <?php endfor; ?>
+
+        <?php if ($page < $total_pages): ?>
+                <a href="?page=<?= $page + 1 ?>" class="btn"></a>
+                <?php endif; ?>
+    </div>
+
     
-    <style>
-       
-    </style>
+
      
 </body>
 

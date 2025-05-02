@@ -7,6 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $price = $_POST['price'];
     $image = $_POST['image'];
     $quantity = $_POST['quantity'];
+    
 
     // Nếu giỏ hàng chưa tồn tại, khởi tạo giỏ hàng
     if (!isset($_SESSION['cart'])) {
@@ -19,9 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         // Thêm sản phẩm mới vào giỏ hàng
         $_SESSION['cart'][$productId] = [
-            'name' =>
-$name, 'price' => $price, 'image' => $image, 'quantity' => $quantity, ]; } 
- header('Location: cart.php'); exit(); } ?>
+            'name' =>$name,    
+            'price' => $price, 
+            'image' => $image,
+            'quantity' => $quantity, 
+        ];
+     } 
+ header('Location: cart.php'); 
+ exit(); } ?>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -53,6 +59,14 @@ $name, 'price' => $price, 'image' => $image, 'quantity' => $quantity, ]; }
                         <td><?= number_format($item['price'], 0, ',', '.') ?> VND</td>
                         <td><?= $item['quantity'] ?></td>
                         <td><?= number_format($item['price'] * $item['quantity'], 0, ',', '.') ?> VND</td>
+                        <td>
+                <!-- Nút xóa sản phẩm -->
+                <form action="cart.php" method="POST" style="display: inline;">
+                    <input type="hidden" name="action" value="remove">
+                    <input type="hidden" name="productId" value="<?= $id ?>">
+                    <button type="submit" class="btn remove-btn">Xóa</button>
+                </form>
+            </td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

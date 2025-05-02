@@ -1,16 +1,15 @@
 <?php
-session_start(); // Bắt đầu session để truy cập giỏ hàng
+if (session_status() === PHP_SESSION_NONE) {
+    session_start(); // Bắt đầu session nếu chưa được khởi tạo
+}
 $totalQuantity = 0; // Biến lưu tổng số lượng sản phẩm
-if (isset($_SESSION['cart'])) {
-    foreach ($_SESSION['cart'] as $item) {
-        $totalQuantity += $item['quantity'];
-    }
-    $totalPrice = 0;
+$totalPrice = 0; // Biến lưu tổng giá trị giỏ hàng (khởi tạo mặc định)
+
 if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
     foreach ($_SESSION['cart'] as $item) {
+        $totalQuantity += $item['quantity'];
         $totalPrice += $item['price'] * $item['quantity'];
     }
-}
 }
 ?>
 <header class="header fixed dashboard">
@@ -36,7 +35,6 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
               <span>Trang Chủ</span>
             </a>
           </li>
-
           <li class="nav-item dropdown">
             <a href="./php/info_brand.php" class="nav-link">
               <i class="fa-solid fa-tags nav-icon"></i>
@@ -68,7 +66,6 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
               </div>
             </div>
           </li>
-
           <li class="nav-item dropdown">
             <a href="./php/all_product.php" class="nav-link">
               <i class="fa-solid fa-bottle-water nav-icon"></i>
@@ -81,32 +78,22 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
                   <div class="menu-column">
                     <h4 class="menu-category">Danh mục</h4>
                     <ul class="submenu-list">
-                      <li>
-                        <a href="./php/all_product.php"
-                          ><i class="fa-solid fa-list"></i> Tất cả sản phẩm</a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"><i class="fa-solid fa-box"></i> Sữa bột</a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fa-solid fa-cube"></i> Sữa hộp</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa-solid fa-blender"></i> Sữa chua</a
-                        >
-                      </li>
-                      <li>
-                        <a href="#"><i class="fa-solid fa-star"></i> Sữa non</a>
-                      </li>
-                      <li>
-                        <a href="#"
-                          ><i class="fa-solid fa-temperature-high"></i> Sữa tươi
-                          tiệt trùng</a
-                        >
-                      </li>
-                    </ul>
+    <li>
+        <a href="./php./all_product.php?category=sua-bot">
+            <i class="fa-solid fa-box"></i> Sữa bột
+        </a>
+    </li>
+    <li>
+        <a href="./all_product.php?category=sua-hop">
+            <i class="fa-solid fa-cube"></i> Sữa hộp
+        </a>
+    </li>
+    <li>
+        <a href="./php./all_product.php?category=sua-chua">
+            <i class="fa-solid fa-blender"></i> Sữa chua
+        </a>
+    </li>
+</ul>
                   </div>
                   <div class="menu-column">
                     <h4 class="menu-category">Sản phẩm nổi bật</h4>
@@ -118,14 +105,12 @@ if (isset($_SESSION['cart']) && !empty($_SESSION['cart'])) {
               </div>
             </div>
           </li>
-
           <li class="nav-item">
             <a href="./php/news.php" class="nav-link">
               <i class="fa-solid fa-newspaper nav-icon"></i>
               <span>Tin Tức</span>
             </a>
           </li>
-
           <li class="nav-item">
           <a href="/BaiCuoiKy_23CT_2/contact.php" class="nav-link">
               <i class="fa-solid fa-address-book nav-icon"></i>
